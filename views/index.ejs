@@ -4,24 +4,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/vendors/bootstrap-reboot.css" />
+  <link rel="stylesheet" href="/vendors/swiper.min.css" />
   <link rel="stylesheet" href="/style.css">
 
   <title>Document</title>
 </head>
 <body>
-  <div class="global-container">
-    <div class="container">
-      
+  <div class="hero">
+    <!-- Slider main container -->
+    <div class="swiper-container">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <div class="hero__title">
+          Pila
+        </div>
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <img src="images/image3.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/image2.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/image1.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/image4.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/image5.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+          <img src="images/image6.jpg" alt="">
+        </div>
+      </div>
+      <div class="hero__footer">
+        <img class="hero__downarrow" src="images/arrow.svg" alt="">
+        <span class="hero__scrolltext">scroll</span>
+      </div>
     </div>
   </div>
-  <%- include('header'); %>
+  
 
-<div class="main">
-  <div class="main__header">
-    main-header
+  <div class="container">
+    <div class="header">
+      <%- include('header'); %>
+    </div>
+
+    <div class="main">
+      <div class="main-header">
+        <div class="image">
+
+        </div>
+        <!-- <img class="image" src="images/image7.jpg" alt=""> -->
+      </div>
+      <div class="main-">
+
+      </div>
+    </div>
+
+    <div class="footer">
+
+    </div>
   </div>
-</div>
+
+
+
+
+
+  <script src="scripts/swiper.min.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>
 
