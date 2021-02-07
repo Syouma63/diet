@@ -1,0 +1,26 @@
+.header-container {
+  height: 80px;
+  width: 100%;
+  background-color: lightcoral;
+  line-height: 80px;
+}
+
+.lists {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+  & > ul {
+    display: flex;
+
+    & > li {
+      list-style: none;
+    }
+  }
+}
+
+.header-title {
+  color: $cTitle;
+  font-family: 'Londrina Shadow', cursive;
+  font-size: 25px;
+  letter-spacing: 4px;
+}
