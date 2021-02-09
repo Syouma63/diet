@@ -9,10 +9,19 @@
 
 .image {
   width: 100%;
-  height: 600px;
+  height: 800px;
   opacity: 1;
   background-size: cover;
   background-image: url(images/image7.jpg);
+}
+
+.image::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 800px;
+  background-color: rgba(5, 5, 5, 0.2);
 }
 
 .swiper-container {
@@ -55,7 +64,7 @@
 
 .hero__title {
   position: absolute;
-  width: 80%;
+  width: 90%;
   text-align: center;
   margin: auto;
   top: 35%;
@@ -197,6 +206,21 @@
 
 .lists > ul > li {
   list-style: none;
+  margin-right: 15px;
+}
+
+.lists > ul > li > a {
+  text-decoration: none;
+  color: lavender;
+  font-size: 26px;
+  font-weight: 600;
+  font-family: 'Londrina Shadow', cursive;
+}
+
+.lists > ul > li > a:hover {
+  color: #947165;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .header-title {

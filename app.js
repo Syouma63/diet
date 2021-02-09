@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
+app.get('/mypage', (req, res) => {
+  res.render('mypage.ejs');
+});
+
 
 
 app.listen(3000);
