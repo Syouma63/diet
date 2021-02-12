@@ -1,0 +1,158 @@
+.mypage-container {
+  width: 100vw;
+  display: flex;
+  height: calc(100vh - 80px);
+}
+
+// サイドバー
+.side-bar {
+  max-width: 250px;
+  min-width: 130px;
+  width: 20%;
+
+  & > ul {
+    padding: 0;
+    width: 100%;
+    & > li {
+      height: 50px;
+      line-height: 50px;
+      border-bottom: 1px solid lightgrey;
+      margin: 0;
+      // color: lightcoral;
+      cursor: pointer;
+      &.slide-bg {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: lightcoral;
+          transform: translateX(-100%);
+          transition: transform 0.5s cubic-bezier(0, 0, 0.09, 1.07);
+          z-index: -1;
+        }
+      }
+      & > a {
+        font-size: 18px;
+        text-decoration: none;
+        list-style: none;
+        color: lightcoral;
+        width: 100%;
+      }
+      & > a:hover {
+        display: inline-block;
+        color: $cTitle;
+        transition: 0.5s;
+      }
+    }
+    & > li:hover {
+      color: $cTitle;
+      &::before {
+        transform: none;
+      }
+    }
+  }
+}
+
+// メインバー
+
+.main-bar {
+  background-image: url(images/golf1.jpg);
+  background-size: cover;
+  width: 100%;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    background-color: rgba(5, 5, 5, 0.116);
+  }
+
+  &__memo {
+    overflow: scroll;
+    height: 100%;
+
+    &__memos {
+      width: 80%;
+      max-width: 700px;
+      height: 150px;
+      border: 2px solid rgb(252, 199, 102);
+      border-radius: 10px;
+      margin: 20px auto;
+      background-color: whitesmoke;
+      padding: 10px;
+      cursor: pointer;
+
+      & > a {
+        color: black;
+      }
+      & > a:hover {
+        text-decoration: none;
+      }
+
+      &.cover-3d {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          background-color: rgb(156, 250, 62);
+          top: 0;
+          left: 0;
+          transform: rotateY(90deg);
+          transition: transform 0.5s;
+        }
+
+        &:hover {
+          transition: 0.5s;
+          &::before {
+            transform: none;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+// メモ中身
+
+.memo {
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &__left {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+
+    &__course {
+      font-size: 20px;
+      z-index: 2;
+    }
+
+    &__score {
+      font-size: 20px;
+      z-index: 2;
+    }
+  }
+
+  &__right {
+    text-align: end;
+    position: relative;
+    top: -20px;
+    color: rgb(66, 65, 65);
+  }
+}
