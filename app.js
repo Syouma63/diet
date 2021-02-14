@@ -19,6 +19,10 @@ app.get('/chart', (req,res) => {
   res.render('chart.ejs');
 });
 
+app.get('/record', (req,res) => {
+  res.render('record.ejs');
+});
+
 
 
 app.listen(3000);
