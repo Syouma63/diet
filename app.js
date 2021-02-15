@@ -53,6 +53,7 @@ app.get('/record', (req,res) => {
   res.render('record.ejs');
 });
 
+
 app.get('/signup', (req, res) => {
   res.render('signup.ejs');
 });
