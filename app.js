@@ -23,6 +23,9 @@ app.get('/record', (req,res) => {
   res.render('record.ejs');
 });
 
+app.get('/login', (req, res) => {
+  res.render('login.ejs');
+});
 
 
 app.listen(3000);
