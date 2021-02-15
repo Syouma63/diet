@@ -1,0 +1,45 @@
+.header-container {
+  height: 80px;
+  width: 100%;
+  background-color: lightcoral;
+  line-height: 80px;
+}
+
+.lists {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+  & > ul {
+    display: flex;
+
+    & > li {
+      list-style: none;
+      margin-right: 15px;
+      & > a {
+        text-decoration: none;
+        color: lavender; 
+        font-size: 26px;
+        font-weight: 600;
+        font-family: 'Londrina Shadow', cursive;
+      }
+      & > a:hover {
+        color: #947165;
+        transition: 0.4s;
+        
+      }
+
+    }
+  }
+}
+
+.header-title {
+  color: $cTitle;
+  font-family: 'Londrina Shadow', cursive;
+  font-size: 25px;
+  letter-spacing: 4px;
+  height: 80px;
+  & > h1 {
+    line-height: 80px;
+    font-size: 50px;
+  }
+}

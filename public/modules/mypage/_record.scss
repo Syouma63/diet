@@ -1,0 +1,32 @@
+.record-container {
+  width: 100%;
+  height: calc(100vh - 80px);
+  // background-color: chocolate;
+
+
+  &__main {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+  }
+
+}
+
+.header {
+  font-size: 28px;
+  font-weight: 600;
+  background-color: rgb(137, 243, 160);
+}
+
+input {
+  margin-bottom: 25px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.record-button {
+  text-align: center;
+}

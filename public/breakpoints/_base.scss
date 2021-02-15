@@ -1,0 +1,36 @@
+$cWhite: white;
+
+.container {
+  height: 100vh;
+  width: 100vw;
+}
+
+// ヘッダー
+
+
+
+
+// メイン
+
+.main {
+  height: 100px;
+}
+
+.image {
+  width: 100%;
+  height: 800px;
+  opacity: 1;
+  background-size: cover;
+  background-image: url(images/image7.jpg);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 800px;
+    background-color: rgba(5, 5, 5, 0.2);
+  }
+}
+
+
