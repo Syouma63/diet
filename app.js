@@ -1,6 +1,7 @@
 const express = require('express');
-const mysql = require('mysql')
-const session = require('express-session')
+const mysql = require('mysql');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
 const app = express();
 
 app.use(express.static('public'));
@@ -14,14 +15,6 @@ const connection = mysql.createConnection({
   database: 'pila'
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.log('error connecting: ' + err.stack);
-    return;
-  }
-  console.log('success');
-});
-
 app.use(
   session({
     secret: 'my_secret_key',
@@ -30,6 +23,17 @@ app.use(
   })
 )
 
+app.use((req, res, next) => {
+  if (req.session.userId === undefined) {
+    res.locals.username = 'ゲスト';
+    res.locals.isLoggedIn = false;
+  } else {
+    res.locals.username = req.session.username;
+    res.locals.isLoggedIn = true;
+  }
+  next();
+})
+
 
 
 app.get('/', (req, res) => {
@@ -37,11 +41,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/mypage', (req, res) => {
-  if (req.session.userId === undefined) {
-    console.log('ログインしていません');
-  } else {
-    console.log('ログインしています');
-  }
   res.render('mypage.ejs');
 });
 
@@ -55,27 +54,75 @@ app.get('/record', (req,res) => {
 
 
 app.get('/signup', (req, res) => {
-  res.render('signup.ejs');
+  res.render('signup.ejs', {errors:[]});
 });
 
-app.post('/signup', (req, res) => {
-  const username = req.body.username
-  const email = req.body.email
-  const password = req.body.password
+app.post('/signup',
+  (req, res, next) => {
+    console.log('入力値の空チェック');
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+    const errors = [];
 
-  connection.query(
-    'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-    [username, email, password],
-    (error, results) => {
-      res.redirect('/mypage');
+    if (username === '') {
+      errors.push('ユーザー名が空です');
     }
-  );
-})
+    if (email === '') {
+      errors.push('メールアドレスが空です');
+    }
+    if (password === '') {
+      errors.push('パスワードが空です');
+    }
+    
+    if (errors.length > 0) {
+      res.render('signup.ejs', {errors:errors});
+    } else {
+      next();
+    }
+  },
+
+  (req, res, next) => {
+    console.log('メールのアドレスの重複チェック');
+    const email = req.body.email;
+    const errors = [];
+
+    connection.query(
+      'SELECT * FROM users WHERE email = ?',
+      [email],
+      (error, results) => {
+        if (results.length > 0) {
+          errors.push('メールアドレスが重複しています。');
+          res.render('signup.ejs', { errors: errors });
+        } else {
+          next();
+        }
+      }
+    )
+  },
+
+  (req, res) => {
+    console.log('ユーザー登録');
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    bcrypt.hash(password, 10, (error, hash) => {
+      connection.query(
+        'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+        [username, email, hash],
+        (error, results) => {
+          req.session.userId = results.insertId;
+          req.session.username = username;
+          res.redirect('/mypage');
+        }
+      );
+    }) 
+  }
+);
 
 app.get('/login', (req, res) => {
-  connection.query(
-    res.render('login.ejs')
-  )
+  res.render('login.ejs');
 });
 
 app.post('/login', (req, res) => {
@@ -85,12 +132,21 @@ app.post('/login', (req, res) => {
     [email],
     (error, results) => {
       if (results.length > 0) {
-        if (req.body.password === results[0].password) {
-          req.session.userId = results[0].id;
-          res.redirect('/mypage');
-        } else {
-          res.redirect('/login');
-        }
+
+        const plain = req.body.password;
+
+        const hash = results[0].password;
+
+        bcrypt.compare(plain, hash, (error, isEqual) => {
+          if (isEqual) {
+            req.session.userId = results[0].id;
+            req.session.username = results[0].username;
+            res.redirect('/mypage');
+          } else {
+            res.redirect('/login');
+          }
+        });
+        
       } else {
         res.redirect('/login');
       }
@@ -98,7 +154,11 @@ app.post('/login', (req, res) => {
   )
 });
 
-
+app.get('/logout', (req, res) => {
+  req.session.destroy(error => {
+    res.redirect('/');
+  });
+});
 
 
 app.listen(3000);

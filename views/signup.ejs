@@ -19,19 +19,26 @@
     <!-- CSSは,record.scssから参照している -->
       <div class="panel card">
         <div class="card-header header ">新規登録</div>
+          <% if (errors.length > 0) { %>
+            <ul class="errors">
+              <% errors.forEach(error => { %>
+                <li><%= error %></li>
+              <% }); %>
+            </ul>
+          <% } %>
           <div class="card-body">
             <form action="/signup" method="POST">
               <div class="form-group">
                 <label class="label">ユーザー名</label>
-                <input type="text" name="username" class="form-control" required="必須" placeholder="ユーザー名を入力してください。">
+                <input type="text" name="username" class="form-control" placeholder="ユーザー名を入力してください。">
               </div>
               <div class="form-group">
                 <label class="label">メールアドレス</label>
-                <input type="email" name="email" class="form-control"required="必須" placeholder="メールアドレスを入力してください。">
+                <input type="email" name="email" class="form-control" placeholder="メールアドレスを入力してください。">
               </div>
               <div class="form-group">
                 <label class="label">パスワード</label>
-                <input type="password" name="password" class="form-control" minlength="6" required="必須" placeholder="パスワードを入力してください。">
+                <input type="password" name="password" class="form-control" minlength="6" placeholder="パスワードを入力してください。">
               </div>
               <div class="record-button">
                 <button class="btn btn-outline-success btn-lg" type="submit" >submit</button>
