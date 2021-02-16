@@ -309,6 +309,24 @@ input {
   text-align: center;
 }
 
+.back {
+  text-decoration: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back > a {
+  text-decoration: none;
+  font-size: 18px;
+  color: green;
+}
+
+.back > a:hover {
+  opacity: 0.6;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
 .mypage-container {
   width: 100vw;
   display: -webkit-box;
@@ -490,5 +508,18 @@ input {
   position: relative;
   top: -20px;
   color: #424141;
+}
+
+.login-container {
+  width: 100%;
+  height: calc(100vh - 80px);
+  background-color: whitesmoke;
+  padding: 30px;
+}
+
+.login-container__card {
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
 }
 /*# sourceMappingURL=style.css.map */
