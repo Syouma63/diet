@@ -4,12 +4,15 @@
       <h1>Pila</h1>
     </div>
     <ul>
-      <li><a href="/mypage">MyPage</a></li>
-      <li><a href="#">SignIn</a></li>
-      <li><a href="#">LogIn</a></li>
-
-      <!-- <li><a href="#">MyPage</a></li>
-      <li><a href="#">LogOut</a></li> -->
+      <!-- <p>ようこそ、<%= locals.username %>さん</p> -->
+      <% if(locals.isLoggedIn){ %>
+        <li><a href="/mypage">MyPage</a></li>
+        <li><a href="/logout">LogOut</a></li>
+      <% } else { %>
+        <li><a href="/signup">SignUp</a></li>
+        <li><a href="/login">LogIn</a></li>
+      <% } %>
+      
 
     </ul>
   </div>
