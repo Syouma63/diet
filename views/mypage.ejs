@@ -23,7 +23,25 @@
     <%- include('modules/mypage/side-bar'); %>
     <div class="main-bar">
       <div class="main-bar__memo">
-        <div class="main-bar__memo__memos cover-3d">
+        <% records.forEach((record) => { %>
+          <div class="main-bar__memo__memos cover-3d">
+            <a href="#">
+              <div class="memo">
+                <div class="memo__left">
+                  <div class="memo__left__course">
+                    コース名：<%= record.course_name %>
+                  </div>
+                  <div class="memo__left__score">
+                    スコア：<%= record.score %>
+                  </div>
+                </div>
+                <p class="memo__right">日付：<%= record.day %></p>
+              </div>
+            </a>
+          </div>
+        <% }) %>
+
+        <!-- <div class="main-bar__memo__memos cover-3d">
           <a href="/">
             <div class="memo">
               <div class="memo__left">
@@ -67,22 +85,7 @@
               <p class="memo__right">日付：2021-02-11</p>
             </div>
           </a>
-        </div>
-        <div class="main-bar__memo__memos cover-3d">
-          <a href="/">
-            <div class="memo">
-              <div class="memo__left">
-                <div class="memo__left__course">
-                  コース名：三好カントリー倶楽部
-                </div>
-                <div class="memo__left__score">
-                  スコア：100
-                </div>
-              </div>
-              <p class="memo__right">日付：2021-02-11</p>
-            </div>
-          </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

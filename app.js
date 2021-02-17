@@ -12,7 +12,9 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'pila'
+  database: 'pila',
+  // 下記のコードは、Data型が勝手にDatatime型で取得されるのを回避
+  dateStrings: 'date'
 });
 
 app.use(
@@ -41,7 +43,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/mypage', (req, res) => {
-  res.render('mypage.ejs');
+  connection.query(
+    'SELECT * FROM records',
+    (error, results) => {
+      res.render('mypage.ejs', {records: results});
+    }
+  );
 });
 
 app.get('/chart', (req,res) => {
@@ -52,6 +59,15 @@ app.get('/record', (req,res) => {
   res.render('record.ejs');
 });
 
+app.post('/mypage', (req, res) => {
+  connection.query(
+    'INSERT INTO records (course_name, score, day) VALUES (?, ?, ?)',
+    [req.body.course_name, req.body.score, req.body.day],
+    (error, results) => {
+      res.redirect('/mypage');
+    }
+  );
+});
 
 app.get('/signup', (req, res) => {
   res.render('signup.ejs', {errors:[]});
