@@ -238,6 +238,7 @@
 
 .chart-bar {
   width: 100%;
+  background-color: whitesmoke;
 }
 
 .chart-container {
@@ -261,22 +262,28 @@
   text-align: center;
   font-size: 22px;
   margin: 20px 0;
+  background-color: white;
 }
 
 .chart-container__chart {
   width: 100%;
-  height: calc(100vh - 200px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .chart-container__chart > #myChart {
   max-width: 1100px;
-  margin: auto;
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 30px;
 }
 
 .record-container {
