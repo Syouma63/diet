@@ -1,7 +1,8 @@
+
 // グラフ
 
 var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
+const chart = new Chart(ctx, {
     // 作成するグラフの種類
     type: 'bar',
 
@@ -12,7 +13,7 @@ var chart = new Chart(ctx, {
           label: "スコア",
           // backgroundColor: 'rgb(255, 99, 132)',
           borderColor: 'rgb(255, 99, 132)',
-          data: [150, 130, 100, 98, 120, 110],
+          data: [122, 122, 122, 122, 122, 122],
           backgroundColor: "rgba(219,39,91,0.5)"
         }]
     },

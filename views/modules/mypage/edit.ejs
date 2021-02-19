@@ -1,0 +1,26 @@
+<div class="record-container">
+  <div class="record-container__main">
+    <div class="panel card">
+      <div class="card-header header ">記録</div>
+      <div class="card-body">
+        <form action="/update/<%= records.id %> " method="POST">
+          <div class="form-group">
+            <label class="label">コース名</label>
+            <input class="form-control" required="必須" type="text" name="course_name" value="<%= records.course_name %>" placeholder="コース名を入力して下さい。">
+            <label class="label">スコア</label>
+            <input class="form-control" required="必須" type="text" name="score" value="<%= records.score %>" placeholder="スコアを入力して下さい。">
+            <label class="label">日付</label>
+            <input class="form-control" required="必須" type="date" name="day" value="<%= records.day %>">
+            <div class="record-button">
+              <button class="btn btn-outline-success btn-lg" type="submit" >編集</button>
+            </div>
+            <div class="back">
+              <a href="/mypage">もどる</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -25,67 +25,25 @@
       <div class="main-bar__memo">
         <% records.forEach((record) => { %>
           <div class="main-bar__memo__memos cover-3d">
-            <a href="#">
-              <div class="memo">
-                <div class="memo__left">
-                  <div class="memo__left__course">
-                    コース名：<%= record.course_name %>
-                  </div>
-                  <div class="memo__left__score">
-                    スコア：<%= record.score %>
-                  </div>
+            <div class="memo">
+              <div class="memo__left">
+                <div class="memo__left__course">
+                  コース名：<%= record.course_name %>
                 </div>
-                <p class="memo__right">日付：<%= record.day %></p>
+                <div class="memo__left__score">
+                  スコア：<%= record.score %>
+                </div>
               </div>
-            </a>
+              <ul class="memo__right memo__select">
+                <a class="btn btn-outline-success button-edit" href="/edit/<%= record.id %>">編集</a>
+                <form action="/delete/<%= record.id %>" method="POST">
+                  <button class="btn btn-outline-danger" type="submit">削除</button>
+                </form>
+              </ul>
+              <p class="memo__right">日付：<%= record.day %></p>
+            </div>
           </div>
         <% }) %>
-
-        <!-- <div class="main-bar__memo__memos cover-3d">
-          <a href="/">
-            <div class="memo">
-              <div class="memo__left">
-                <div class="memo__left__course">
-                  コース名：三好カントリー倶楽部
-                </div>
-                <div class="memo__left__score">
-                  スコア：100
-                </div>
-              </div>
-              <p class="memo__right">日付：2021-02-11</p>
-            </div>
-          </a>
-        </div>
-        <div class="main-bar__memo__memos cover-3d">
-          <a href="/">
-            <div class="memo">
-              <div class="memo__left">
-                <div class="memo__left__course">
-                  コース名：三好カントリー倶楽部
-                </div>
-                <div class="memo__left__score">
-                  スコア：100
-                </div>
-              </div>
-              <p class="memo__right">日付：2021-02-11</p>
-            </div>
-          </a>
-        </div>
-        <div class="main-bar__memo__memos cover-3d">
-          <a href="/">
-            <div class="memo">
-              <div class="memo__left">
-                <div class="memo__left__course">
-                  コース名：三好カントリー倶楽部
-                </div>
-                <div class="memo__left__score">
-                  スコア：100
-                </div>
-              </div>
-              <p class="memo__right">日付：2021-02-11</p>
-            </div>
-          </a>
-        </div> -->
       </div>
     </div>
   </div>

@@ -51,20 +51,59 @@ app.get('/mypage', (req, res) => {
   );
 });
 
-app.get('/chart', (req,res) => {
-  res.render('chart.ejs');
-});
-
-app.get('/record', (req,res) => {
-  res.render('record.ejs');
-});
-
 app.post('/mypage', (req, res) => {
   connection.query(
     'INSERT INTO records (course_name, score, day) VALUES (?, ?, ?)',
     [req.body.course_name, req.body.score, req.body.day],
     (error, results) => {
       res.redirect('/mypage');
+    }
+  );
+});
+
+app.get('/record', (req,res) => {
+  res.render('record.ejs');
+});
+
+app.get('/chart', (req,res) => {
+  connection.query(
+    'SELECT * FROM records',
+    (error, results) => {
+      res.render('chart.ejs', {records: results});
+      const chart = results
+      console.log(chart);
+      
+    }
+  )
+});
+
+app.post('/delete/:id', (req, res) => {
+  connection.query(
+    'DELETE FROM records WHERE id = ?',
+    [req.params.id],
+    (error, results) => {
+      res.redirect('/mypage');
+    }
+  )
+  
+});
+
+app.get('/edit/:id', (req, res) => {
+  connection.query (
+    'SELECT * FROM records WHERE id = ?',
+    [req.params.id],
+    (error, results) => {
+      res.render('edit.ejs', {records: results[0]});
+    }
+  )
+});
+
+app.post('/update/:id', (req, res) => {
+  connection.query(
+    'UPDATE records SET course_name = ?, score = ?, day = ? WHERE id = ? ',
+    [req.body.course_name, req.body.score, req.body.day, req.params.id],
+    (error, results) => {
+      res.redirect('/mypage')
     }
   );
 });
